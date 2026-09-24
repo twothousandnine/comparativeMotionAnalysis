@@ -1,0 +1,52 @@
+Copyright (c) 2026 Luis De Anda, Katelyn Rohrer, Jakob Garcia, Brandon Jonas,
+Bryce Michael, Rebecca C. Slepian, Hailey Patterson, and Marvin J. Slepian.
+All rights reserved.
+
+This repository accompanies the study "Comparative Feasibility Evaluation of
+Marker-Based and Markerless Computer-Vision Pose Estimation for Quantitative
+Human Motion Analysis: An Initial Methods Comparison." The data and code are
+published so that the results of that study can be inspected and verified.
+
+PERMITTED WITHOUT REQUEST
+
+You may download, read, and run this material, and reproduce the analyses it
+contains, for the purpose of reviewing or verifying the associated study. You
+may quote or excerpt it in scholarly discussion of that study with attribution.
+
+REQUIRES WRITTEN PERMISSION
+
+Any other use requires advance written permission from the authors. This
+includes, without limitation:
+
+  - use of the data or code in your own research, publication, thesis, or
+    preprint;
+  - redistribution of the data or code, in whole or in part, modified or
+    unmodified;
+  - incorporation into any software, product, model, or service, including use
+    as training data for machine learning models;
+  - any commercial use.
+
+To request permission, contact the corresponding author, Marvin J. Slepian,
+University of Arizona. Permission is generally granted for academic and
+non-commercial research; the purpose of this clause is to let the authors know
+how the data is being used and to ensure appropriate citation, not to withhold
+access.
+
+CONDITIONS
+
+Where permission is granted, the associated publication must be cited.
+
+Human-subjects data in this repository has been de-identified. It was collected
+and released under University of Arizona IRB 2107032177. You may not attempt to
+re-identify participants, link this data to other datasets to that end, or use
+it in any manner inconsistent with the consent obtained.
+
+NO WARRANTY
+
+THIS MATERIAL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY ARISING FROM OR IN CONNECTION WITH THIS MATERIAL OR ITS USE. Nothing
+in this license constitutes medical advice or a clinically validated
+measurement method.

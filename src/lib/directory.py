@@ -1,17 +1,7 @@
 import  os
 from    typing import List, Dict, Callable
 import  pandas as pd
-import  src.lib.command_line as CL
 from    src.lib.error import *
-
-
-def cd(directory: str) -> None:
-    _check_dir_exists(directory)
-    
-    try:
-        os.chdir(directory)
-    except Exception as e:
-        raise Error(f"Error changing into directory; '{directory} | {e}'") from None
 
 
 def file_to_df(filename: str) -> pd.DataFrame:
@@ -54,28 +44,6 @@ def get_files(directory: str) -> List[str]:
     return all_files
 
 
-def get_dfs(directory: str) -> List[str]:
-    _check_dir_exists(directory)
-
-    df_file_types = [
-        ".csv",
-        ".xslx"
-    ]
-
-    all_files = []
-    try:
-        for root, _, files in os.walk(directory):
-            for file in files:
-                file_path = os.path.abspath(os.path.join(root, file))
-                for ext in df_file_types:
-                    if file_path.endswith(ext):
-                        all_files.append(file_path)
-    except Exception as e:
-        raise Error(f"Failed to list files in {directory}: {str(e)}") from None
-
-    return all_files
-
-
 def search(*terms: str, directory=f".{os.sep}") -> List[str]:
     _check_dir_exists(directory)
     files = get_files(directory)
@@ -90,35 +58,6 @@ def search(*terms: str, directory=f".{os.sep}") -> List[str]:
     filtered_files = filter(matches_terms, files)
     
     return list(filtered_files) 
-
-
-def add_file_suffix(filename: str, suffix: str) -> str:
-    dirname, basename = os.path.split(filename)
-    name, ext = os.path.splitext(basename)
-
-    if not ext:
-        raise Error(f"File extension not found in '{filename}'") from None
-
-    new_basename = f"{name}_{suffix}{ext}"
-    return os.path.join(dirname, new_basename)
-
-
-def add_file_prefix(filename: str, prefix: str) -> str:
-    dirname, basename = os.path.split(filename)
-    name, ext = os.path.splitext(basename)
-
-    if not ext:
-        raise Error(f"File extension not found in '{filename}'") from None
-
-    new_basename = f"{prefix}_{name}{ext}"
-    return os.path.join(dirname, new_basename)
-
-
-def gum_search() -> List[str]:
-    terms = CL.bash_prompt("gum input --placeholder='enter search term...'")
-    files = search(terms)
-
-    return files
 
 
 def get_basename(filename: str) -> str:

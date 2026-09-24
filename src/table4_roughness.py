@@ -2,7 +2,6 @@ import os
 from scipy.stats import mannwhitneyu
 from icecream import ic
 import pandas as pd
-import matplotlib.pyplot as plt
 import src.lib.directory as dir
 import src.lib.processing as proc
 from typing import Dict,List,Tuple
@@ -27,30 +26,6 @@ def filter_files_by_speed(files: List, speed: str) -> List:
     
     filtered = [file for file in files if is_correct_speed(file, speed)]
     return filtered
-
-
-def agg_roughness(files: str, mode: str, title: str = '') -> float:
-    all_roughness = []
-    for file in files:
-        df = dir.file_to_df(file)
-        col = f'{mode}_roughness'
-        if col in df.columns:
-            roughness = df[col].mean()
-            all_roughness.append(roughness)
-        else:
-            raise ValueError(f"Column '{col}' not found in file: {file}")
-    
-    # Plot the distribution of all roughness
-    plt.figure(figsize=(8, 6))
-    plt.hist(all_roughness, bins=20, color='blue', alpha=0.7, edgecolor='black')
-    plt.title(title if title else f'Roughness Distribution ({mode})')
-    plt.xlabel('Roughness')
-    plt.ylabel('Frequency')
-    plt.grid(axis='y', alpha=0.75)
-    plt.show()
-    
-    avg = np.mean(all_roughness)
-    return avg
 
 
 def calc_p_value(data1: List[float], data2: List[float]) -> float:

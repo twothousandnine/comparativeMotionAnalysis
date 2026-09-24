@@ -71,20 +71,14 @@ def create_df() -> pd.DataFrame:
 
 def main():
     aggregate_df = create_df()
-    grouped = aggregate_df.groupby(['mode', 'motion'])
-    
-    grouped = aggregate_df.groupby(['mode', 'motion'])['successful_rom'].sum()
+
     AGG_OUTPATH = os.path.join(globals.AGGREGATE, 'rom_eval_aggregate.csv')
     aggregate_df.to_csv(AGG_OUTPATH)
-    print(grouped) 
-    
-    # Group by 'mode' and 'motion', then sum the True counts in 'successful_rom'
-    grouped = aggregate_df.groupby(['mode', 'motion', 'speed'])['successful_rom'].sum()
-    
-    AGG_OUTPATH = os.path.join(globals.AGGREGATE, 'rom_eval_aggregate.csv')
-    aggregate_df.to_csv(AGG_OUTPATH)
-    print(grouped) 
-    
+
+    # Count successful trials per system and motion, then split by speed
+    print(aggregate_df.groupby(['mode', 'motion'])['successful_rom'].sum())
+    print(aggregate_df.groupby(['mode', 'motion', 'speed'])['successful_rom'].sum())
+
     return
 
 

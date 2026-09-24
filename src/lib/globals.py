@@ -12,3 +12,8 @@ FIGURES = os.path.join(CODE_DIR, "figures")
 
 ANGLE_GRAPHS = FIGURES
 CORR_GRAPHS = FIGURES
+
+# Output directories are not tracked in git; create them on import so that
+# figure and table scripts can write results on a fresh clone.
+for _output_dir in (AGGREGATE, FIGURES):
+    os.makedirs(_output_dir, exist_ok=True)

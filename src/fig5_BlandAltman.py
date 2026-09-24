@@ -3,16 +3,14 @@ import  numpy as np
 import  pandas as pd
 from    typing import List,Tuple
 from    icecream import ic
-from    src.lib.globals import *
 import  matplotlib.pyplot as plt
 import  src.lib.directory as dir
 import  src.lib.plot_styles as ps
+import  src.lib.processing as proc
 import scipy.stats as stats
 import src.lib.globals as globals
 
 
-SAVE = True
-SHOW = False
 FILEPATH = os.path.join(globals.FIGURES, 'ba_angles_motions.tiff')
 
 
@@ -20,7 +18,7 @@ def get_datapoints(motion: str) -> Tuple[pd.Series, pd.Series]:
     moca_data_list = []
     mp_data_list = []
 
-    for file in dir.search(motion, directory=ALIGNED_DATA):
+    for file in dir.search(motion, directory=globals.ALIGNED_DATA):
         df = dir.file_to_df(file)
         moca_data_list.extend(df['moca_angles'].values)
         mp_data_list.extend(df['mp_angles'].values)
@@ -84,7 +82,7 @@ def add_letter(ax, letter: str) -> None:
 
 
 def create_plot(motions: List[str]):
-    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
+    _, axes = plt.subplots(2, 3, figsize=(15, 8))
 
     for i, (motion, ax) in enumerate(zip(motions, axes.flatten())):
         x_label = "Average Angles (°)"
@@ -139,24 +137,14 @@ def test_normality(motion: str) -> None:
 
 
 def test_each_motion_normality():
-    motions = get_motions()
+    motions = proc.get_all_motions()
     for motion in motions:
         ic(motion)
         test_normality(motion)
 
 
-def get_motions() -> List[str]:
-    return [
-        "BicepC",
-        "ChestAA",
-        "ShoulderAA",
-        "ShoulderFE",
-        "BodyLean"
-    ]
-
-
 def main():
-    motions = get_motions()
+    motions = proc.get_all_motions()
     create_plot(motions)
     return
 
